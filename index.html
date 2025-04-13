@@ -1,223 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>RAVI PAID PREDICTOR</title>
+  <meta charset="UTF-8">
+  <title>LIMIT CROSSED</title>
   <style>
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(to right, #e0f8e0, #b2fab4); /* Light green gradient */
-      margin: 0;
-      padding: 0;
-      height: 100vh;
+      background-color: black;
       display: flex;
       justify-content: center;
       align-items: center;
-      color: #004d40;
+      height: 100vh;
+      margin: 0;
     }
-
-    .card {
-      backdrop-filter: blur(15px);
-      background: rgba(200, 255, 200, 0.2);
-      border: 1px solid rgba(0, 128, 0, 0.2);
-      border-radius: 20px;
-      padding: 30px 40px;
-      width: 90%;
-      max-width: 400px;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-      transition: 0.3s;
-    }
-
-    .card:hover {
-      transform: translateY(-4px);
-    }
-
-    h2, h3 {
-      color: #00695c;
-    }
-
-    input {
-      width: 100%;
-      padding: 12px;
-      margin: 10px 0 20px;
-      border: none;
-      border-radius: 10px;
-      font-size: 16px;
-      background-color: #d9fcd9;
-    }
-
-    button {
-      background-color: #00bfa5;
-      color: white;
-      padding: 12px;
-      width: 100%;
-      border: none;
-      border-radius: 8px;
-      font-size: 16px;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-
-    button:hover {
-      background-color: #009e88;
-    }
-
-    #main-content {
-      display: none;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .info-box {
-      margin: 10px 0;
-      background: rgba(255, 255, 255, 0.2);
-      padding: 10px 15px;
-      border-left: 5px solid #00bfa5;
-      border-radius: 10px;
-      width: 100%;
-      text-align: left;
-    }
-
-    ul {
-      list-style: none;
-      padding-left: 0;
-    }
-
-    li {
-      background: rgba(255, 255, 255, 0.15);
-      margin: 5px 0;
-      padding: 8px 10px;
-      border-radius: 6px;
-      font-size: 14px;
-    }
-
-    .prediction {
+    .lighting-text {
+      font-size: 30px;
       font-weight: bold;
-      font-size: 18px;
-      color: #00695c;
+      color: #fff;
+      text-transform: uppercase;
+      text-shadow:
+        0 0 5px #00ffff,
+        0 0 10px #00ffff,
+        0 0 20px #00ffff,
+        0 0 40px #00ffff,
+        0 0 80px #00ffff;
+      animation: flicker 1.5s infinite alternate;
+    }
+
+    @keyframes flicker {
+      0% { opacity: 1; text-shadow: 0 0 5px #00ffff, 0 0 10px #00ffff; }
+      50% { opacity: 0.7; text-shadow: 0 0 15px #00ffff, 0 0 30px #00ffff; }
+      100% { opacity: 1; text-shadow: 0 0 25px #00ffff, 0 0 50px #00ffff; }
     }
   </style>
 </head>
 <body>
-  <div class="card" id="login-box">
-    <h2>Login</h2>
-    <input type="password" id="password" placeholder="Enter Password" />
-    <button onclick="login()">Login</button>
-    <p id="error-message" style="color: red; margin-top: 10px;"></p>
+  <div class="lighting-text">
+    YOU CROSS YOUR SHARE LIMIT PLS GO AND BUY UPDATE MOD<br>THIS HACK OWNER :- @RAVIRAJ095
   </div>
-
-  <div class="card" id="main-content">
-    <h2>RAVI PAID PREDICTOR</h2>
-    <div class="info-box" id="time">Time: Loading...</div>
-    <div class="info-box" id="period-number">Period: Loading...</div>
-    <div class="info-box prediction" id="prediction-result">Prediction: Waiting...</div>
-    <div style="width: 100%; margin-top: 20px;">
-      <h3>Prediction History</h3>
-      <ul id="history-list"></ul>
-    </div>
-  </div>
-
-  <script>
-    let storedPassword = "RXM";
-    function login() {
-      let inputPassword = document.getElementById("password").value;
-      if (inputPassword === storedPassword) {
-        document.getElementById("login-box").style.display = "none";
-        document.getElementById("main-content").style.display = "flex";
-        fetchCurrentGameIssue();
-        setInterval(fetchCurrentGameIssue, 60000); // 1 min interval
-      } else {
-        document.getElementById("error-message").textContent = "Incorrect Password";
-      }
-    }
-
-    function updateTime() {
-      const now = new Date();
-      document.getElementById('time').textContent = `Time: ${now.toLocaleTimeString()}`;
-    }
-    setInterval(updateTime, 1000);
-    updateTime();
-
-    let history = [];
-    let latestPeriod = null;
-    let isLastPredictionWin = true; // assume first is win
-    let forcedWin = false; // Flag to force second prediction win
-
-    async function fetchCurrentGameIssue() {
-      const apiUrl = 'https://api.bdg88zf.com/api/webapi/GetGameIssue';
-      const requestData = {
-        typeId: 1,
-        language: 0,
-        random: "40079dcba93a48769c6ee9d4d4fae23f",
-        signature: "D12108C4F57C549D82B23A91E0FA20AE",
-        timestamp: 1727792520,
-      };
-      try {
-        const response = await fetch(apiUrl, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json;charset=UTF-8' },
-          body: JSON.stringify(requestData),
-        });
-        if (response.ok) {
-          const data = await response.json();
-          if (data.code === 0) {
-            const currentPeriod = data.data.issueNumber;
-            if (currentPeriod !== latestPeriod) {
-              latestPeriod = currentPeriod;
-              document.getElementById('period-number').textContent = `Period: ${latestPeriod}`;
-              generatePrediction();
-            }
-          }
-        }
-      } catch (error) {
-        console.error("❌ Fetch error:", error);
-      }
-    }
-
-    function generatePrediction() {
-      const predictionElement = document.getElementById('prediction-result');
-      const historyList = document.getElementById('history-list');
-
-      // If last prediction was loss, force this one to win
-      let predictionText = "";
-      let directNumber, oppositeNumber;
-
-      if (forcedWin) {
-        // Guaranteed winning logic
-        directNumber = Math.floor(Math.random() * 4) + 6;  // Higher chance of BIG
-        oppositeNumber = (directNumber < 5)
-          ? (Math.floor(Math.random() * 5) + 5)
-          : Math.floor(Math.random() * 5);
-
-        predictionText = "BIG"; // Guaranteed WIN on "BIG"
-        forcedWin = false; // Reset forced win flag
-      } else {
-        // Normal prediction logic, random selection
-        directNumber = Math.floor(Math.random() * 10); // Random number
-        oppositeNumber = (directNumber < 5)
-          ? (Math.floor(Math.random() * 5) + 5)
-          : Math.floor(Math.random() * 5);
-
-        predictionText = (directNumber >= 5) ? "BIG" : "SMALL";
-      }
-
-      // Prediction result display
-      predictionElement.innerHTML = `Prediction: ${predictionText} | Numbers: ${directNumber}, ${oppositeNumber}`;
-
-      // Track prediction history
-      history.unshift(`Period ${latestPeriod}: ${predictionText} | ${directNumber}, ${oppositeNumber}`);
-      if (history.length > 10) history.pop();
-      historyList.innerHTML = history.map(item => `<li>${item}</li>`).join('');
-
-      // Logic to track if the prediction was correct or not
-      isLastPredictionWin = (directNumber >= 5); // Win condition for "BIG"
-
-      // If last prediction was loss, next prediction should be forced win
-      if (!isLastPredictionWin) {
-        forcedWin = true; // Force the next prediction to be a WIN
-      }
-    }
-  </script>
 </body>
-  </html>
+</html>
